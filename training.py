@@ -2,6 +2,7 @@ import keras
 from tensorflow.keras import layers
 
 from sklearn.model_selection import train_test_split
+import joblib
 
 
 def train_model(data, num_epochs=50):
@@ -17,5 +18,7 @@ def train_model(data, num_epochs=50):
     model.compile(optimizer='adam', loss='binary_crossentropy')
     model.fit(train_data, train_labels, epochs=num_epochs)
     model.summary()
+
+    joblib.dump(model, 'model.pkl')
 
     return model
